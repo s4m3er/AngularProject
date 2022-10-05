@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-rest-component',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestComponentComponent implements OnInit {
 
-  constructor() { }
+  res$!:Observable<any>
+
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
     console.log("Inside Rest Comp");
@@ -15,7 +19,9 @@ export class RestComponentComponent implements OnInit {
   }
 
   testFun(){
-    console.log("TESTING");
+    this.res$=this.http.get("https://catfact.ninja/fact");
+    console.log(this.res$);
+    
   }
 
 }

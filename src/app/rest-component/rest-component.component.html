@@ -1,1 +1,3 @@
-<div>Inside Rest Component</div>
+<div *ngIf="res$ | async as response">
+{{response['fact']}}
+</div>
